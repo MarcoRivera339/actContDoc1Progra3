@@ -1,0 +1,110 @@
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+        <title>Inicio</title>
+    </head>
+    <body>
+    <!--navbar-->
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Medical Office</span>
+            </a>
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a th:href="@{/}" class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/registroPacientes}" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Registro de pacientes</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/listaPacientes}" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Lista de pacientes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Formulario-->
+    <h1 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Datos del Paciente</h1>
+    <form th:action="@{/listaPacientes}" th:object="${paciente}" method="post" class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label for="cedula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cédula</label>
+                <input type="text" th:field="*{cedula}" name="cedula" id="cedula" class="input-style">
+                <span th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}">Cedula Incorrecta</span>
+            </div>
+            <div>
+                <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                <input type="text" th:field="*{nombre}" name="nombre" id="nombre" class="input-style">
+                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre incompleto</span>
+            </div>
+            <div>
+                <label for="apellido" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido</label>
+                <input type="text" th:field="*{apellido}" name="apellido" id="apellido" class="input-style">
+                <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Apellido Incorrecto</span>
+            </div>
+            <div>
+                <label for="edad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edad</label>
+                <input type="text" th:field="*{edad}" name="edad" id="edad" class="input-style">
+                <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}">Edad Incorrecta</span>
+            </div>
+            <div>
+                <label for="estadoCivil" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado Civil</label>
+                <input type="text" th:field="*{estadoCivil}" name="estadoCivil" id="estadoCivil" class="input-style">
+                <span th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}">Estado Civil Incorrecto</span>
+            </div>
+            <div>
+                <label for="tipoSangre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Sangre</label>
+                <input type="text" th:field="*{tipoSangre}" name="tipoSangre" id="tipoSangre" class="input-style">
+                <span th:if="${#fields.hasErrors('tipoSangre')}" th:errors="*{tipoSangre}">Tipo de Sangre Incorrecto</span>
+            </div>
+            <div>
+                <label for="talla" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Talla</label>
+                <input type="text" th:field="*{talla}" name="talla" id="talla" class="input-style">
+                <span th:if="${#fields.hasErrors('talla')}" th:errors="*{talla}">Talla Incorrecta</span>
+            </div>
+            <div>
+                <label for="peso" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Peso</label>
+                <input type="text" th:field="*{peso}" name="peso" id="peso" class="input-style">
+                <span th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}">Peso Incorrecto</span>
+            </div>
+            <div>
+                <label for="presion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Presión</label>
+                <input type="text" th:field="*{presion}" name="presion" id="presion" class="input-style">
+                <span th:if="${#fields.hasErrors('presion')}" th:errors="*{presion}">Presion Incorrecta</span>
+            </div>
+            <div>
+                <label for="saturacion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Saturación</label>
+                <input type="text" th:field="*{saturacion}" name="saturacion" id="saturacion" class="input-style">
+                <span th:if="${#fields.hasErrors('saturacion')}" th:errors="*{saturacion}">Saturacion Incorrecta</span>
+            </div>
+        </div>
+        <div class="mt-6 text-center">
+            <button type="submit" class="px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md transition-all">
+                Registrar
+            </button>
+        </div>
+    </form>
+
+    <!-- Estilos reutilizables -->
+    <style>
+        .input-style {
+          @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
+                 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+        }
+    </style>
+
+    </body>
+    </html>
